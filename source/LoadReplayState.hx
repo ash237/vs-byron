@@ -131,6 +131,11 @@ class LoadReplayState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.keys.justPressed.F11)
+		{
+			FlxG.fullscreen = !FlxG.fullscreen;
+		}
+		
 		super.update(elapsed);
 
 			if (controls.BACK)

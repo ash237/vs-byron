@@ -118,6 +118,11 @@ class GameplayCustomizeState extends MusicBeatState
         FlxG.camera.zoom = FlxMath.lerp(0.9, FlxG.camera.zoom, 0.95);
         camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 
+        if (FlxG.keys.justPressed.F11)
+		{
+			FlxG.fullscreen = !FlxG.fullscreen;
+		}
+
         if (FlxG.mouse.overlaps(sick) && FlxG.mouse.pressed)
         {
             sick.x = FlxG.mouse.x - sick.width / 2;

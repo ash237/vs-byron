@@ -31,6 +31,10 @@ class OutdatedSubState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.keys.justPressed.F11)
+		{
+			FlxG.fullscreen = !FlxG.fullscreen;
+		}
 		if (controls.ACCEPT)
 		{
 			FlxG.openURL("https://github.com/KadeDev/Kade-Engine/releases/latest");

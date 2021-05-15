@@ -60,6 +60,11 @@ class GameOverState extends FlxTransitionableState
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
+		if (FlxG.keys.justPressed.F11)
+		{
+			FlxG.fullscreen = !FlxG.fullscreen;
+		}
+
 		if (gamepad != null)
 		{
 			if (gamepad.justPressed.ANY)
