@@ -55,6 +55,12 @@ class DialogueBox extends FlxSpriteGroup
 		var hasDialog = false;
 		switch (PlayState.SONG.song.toLowerCase())
 		{
+			case 'tutorial':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('tutorial/dialogueBox');
+				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
+				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
+
 			case 'vocalizer':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('byron/dialogueBox');
@@ -84,7 +90,28 @@ class DialogueBox extends FlxSpriteGroup
 		
 		if (!hasDialog)
 			return;
-		
+		if (PlayState.SONG.song.toLowerCase() == 'tutorial')
+		{
+		portraitLeft = new FlxSprite(-20, 40);
+		portraitLeft.frames = Paths.getSparrowAtlas('tutorial/gfPortrait');
+		portraitLeft.animation.addByPrefix('enter', 'Girlfriend Portrait', 24, false);
+		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+		portraitLeft.updateHitbox();
+		portraitLeft.scrollFactor.set();
+		add(portraitLeft);
+		portraitLeft.visible = false;
+
+		portraitRight = new FlxSprite(0, 40);
+		portraitRight.frames = Paths.getSparrowAtlas('tutorial/bfPortrait');
+		portraitRight.animation.addByPrefix('enter', 'Boyfriend Portrait', 24, false);
+		portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+		portraitRight.updateHitbox();
+		portraitRight.scrollFactor.set();
+		add(portraitRight);
+		portraitRight.visible = false;
+		}
+		if (PlayState.SONG.song.toLowerCase() == 'vocalizer' || PlayState.SONG.song.toLowerCase() == 'hassle' || PlayState.SONG.song.toLowerCase() == 'bitcrush')
+		{
 		portraitLeft = new FlxSprite(-20, 40);
 		portraitLeft.frames = Paths.getSparrowAtlas('byron/byronPortrait');
 		portraitLeft.animation.addByPrefix('enter', 'Byron Portrait', 24, false);
@@ -96,13 +123,33 @@ class DialogueBox extends FlxSpriteGroup
 
 		portraitRight = new FlxSprite(0, 40);
 		portraitRight.frames = Paths.getSparrowAtlas('byron/bfPortrait');
-		portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+		portraitRight.animation.addByPrefix('enter', 'Boyfriend Portrait', 24, false);
 		portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
 		portraitRight.updateHitbox();
 		portraitRight.scrollFactor.set();
 		add(portraitRight);
 		portraitRight.visible = false;
-		
+		}
+		if (PlayState.SONG.song.toLowerCase() == 'dishonored')
+		{
+		portraitLeft = new FlxSprite(-20, 40);
+		portraitLeft.frames = Paths.getSparrowAtlas('byron/byronMadPortrait');
+		portraitLeft.animation.addByPrefix('enter', 'Byron Mad Portrait', 24, false);
+		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+		portraitLeft.updateHitbox();
+		portraitLeft.scrollFactor.set();
+		add(portraitLeft);
+		portraitLeft.visible = false;
+
+		portraitRight = new FlxSprite(0, 40);
+		portraitRight.frames = Paths.getSparrowAtlas('byron/bfPortrait');
+		portraitRight.animation.addByPrefix('enter', 'Boyfriend Portrait', 24, false);
+		portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+		portraitRight.updateHitbox();
+		portraitRight.scrollFactor.set();
+		add(portraitRight);
+		portraitRight.visible = false;
+		}
 		box.animation.play('normalOpen');
 		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 		box.updateHitbox();
@@ -110,8 +157,14 @@ class DialogueBox extends FlxSpriteGroup
 
 		box.screenCenter(X);
 		portraitLeft.screenCenter(X);
-
+		if (PlayState.SONG.song.toLowerCase() == 'tutorial')
+		{
+		handSelect = new FlxSprite(FlxG.width * 2, FlxG.height * 2).loadGraphic(Paths.image('tutorial/hand_textbox'));
+		}
+		if (PlayState.SONG.song.toLowerCase() == 'vocalizer' || PlayState.SONG.song.toLowerCase() == 'hassle' || PlayState.SONG.song.toLowerCase() == 'bitcrush' || PlayState.SONG.song.toLowerCase() == 'dishonored')
+		{
 		handSelect = new FlxSprite(FlxG.width * 2, FlxG.height * 2).loadGraphic(Paths.image('byron/hand_textbox'));
+		}
 		add(handSelect);
 
 
@@ -128,7 +181,10 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
 		swagDialogue.font = 'Pixel Arial 11 Bold';
 		swagDialogue.color = 0xFF3F2021;
-		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
+		if (PlayState.SONG.song.toLowerCase() == 'tutorial')
+			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('GF_2'), 0.6)];
+		else
+			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 		add(swagDialogue);
 
 		dialogue = new Alphabet(0, 80, "", false, true);

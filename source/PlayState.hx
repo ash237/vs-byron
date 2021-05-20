@@ -289,15 +289,15 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'tutorial':
-				dialogue = ["Hey you're pretty cute.", 'Use the arrow keys to keep up \nwith me singing.'];
+				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial/dialogue'));
 			case 'vocalizer':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('vocalizer/d'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('vocalizer/dialogue'));
 			case 'hassle':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('hassle/d'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('hassle/dialogue'));
 			case 'bitcrush':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('bitcrush/d'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('bitcrush/dialogue'));
 			case 'dishonored':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('dishonored/d'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('dishonored/dialogue'));
 		}
 
 		switch(SONG.stage)
@@ -321,6 +321,33 @@ class PlayState extends MusicBeatState
 					add(stageFront);
 
 					var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
+					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+					stageCurtains.updateHitbox();
+					stageCurtains.antialiasing = true;
+					stageCurtains.scrollFactor.set(1.3, 1.3);
+					stageCurtains.active = false;
+
+					add(stageCurtains);
+			}
+			case 'mafia':
+			{
+					defaultCamZoom = 0.9;
+					curStage = 'mafia';
+					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('mafiaback'));
+					bg.antialiasing = true;
+					bg.scrollFactor.set(0.9, 0.9);
+					bg.active = false;
+					add(bg);
+
+					var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('mafiafront'));
+					stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+					stageFront.updateHitbox();
+					stageFront.antialiasing = true;
+					stageFront.scrollFactor.set(0.9, 0.9);
+					stageFront.active = false;
+					add(stageFront);
+
+					var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('mafiacurtains'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
@@ -539,6 +566,9 @@ class PlayState extends MusicBeatState
 		{
 			switch (curSong.toLowerCase())
 			{
+				case 'tutorial':
+					FlxG.sound.play(Paths.sound('GF_1'));
+					schoolIntro(doof);
 			/*	case "winter-horrorland":
 					var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 					add(blackScreen);
