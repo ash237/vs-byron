@@ -236,17 +236,6 @@ class PlayState extends MusicBeatState
 
 		iconRPC = SONG.player2;
 
-		// To avoid having duplicate images in Discord assets
-		switch (iconRPC)
-		{
-			case 'senpai-angry':
-				iconRPC = 'senpai';
-			case 'monster-christmas':
-				iconRPC = 'monster';
-			case 'mom-car':
-				iconRPC = 'mom';
-		}
-
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
 		if (isStoryMode)
 		{
@@ -292,10 +281,10 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial/dialogue'));
 			case 'vocalizer':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('vocalizer/dialogue'));
-			case 'hassle':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('hassle/dialogue'));
 			case 'bitcrush':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('bitcrush/dialogue'));
+			case 'hassle':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('hassle/dialogue'));
 			case 'dishonored':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('dishonored/dialogue'));
 		}
@@ -333,28 +322,43 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.9;
 					curStage = 'mafia';
-					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('mafiaback'));
+					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('mafiaBG'));
+					bg.antialiasing = true;
+					bg.scrollFactor.set(0.9, 0.9);
+					bg.active = false;
+					add(bg);
+			}
+			case 'downfall':
+			{
+					defaultCamZoom = 0.9;
+					curStage = 'downfall';
+					var sky:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('ruined_sky'));
+					sky.antialiasing = true;
+					sky.scrollFactor.set(0, 0);
+					sky.active = false;
+					add(sky);
+
+					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('ruined_wall'));
 					bg.antialiasing = true;
 					bg.scrollFactor.set(0.9, 0.9);
 					bg.active = false;
 					add(bg);
 
-					var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('mafiafront'));
-					stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-					stageFront.updateHitbox();
-					stageFront.antialiasing = true;
-					stageFront.scrollFactor.set(0.9, 0.9);
-					stageFront.active = false;
-					add(stageFront);
+					var stageFloor:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('ruined_floor'));
+					stageFloor.setGraphicSize(Std.int(stageFloor.width * 1.1));
+					stageFloor.updateHitbox();
+					stageFloor.antialiasing = true;
+					stageFloor.scrollFactor.set(0.9, 0.9);
+					stageFloor.active = false;
+					add(stageFloor);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('mafiacurtains'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
-
-					add(stageCurtains);
+					var stagePillars:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('ruined_pillars'));
+					stagePillars.setGraphicSize(Std.int(stagePillars.width * 0.9));
+					stagePillars.updateHitbox();
+					stagePillars.antialiasing = true;
+					stagePillars.scrollFactor.set(1.3, 1.3);
+					stagePillars.active = false;
+					add(stagePillars);
 			}
 			default:
 			{
@@ -500,7 +504,14 @@ class PlayState extends MusicBeatState
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
-		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+		if (SONG.song.toLowerCase() == 'tutorial')
+			healthBar.createFilledBar(0xFFA5004D, 0xFF31B0D1);
+		else if (SONG.song.toLowerCase() == 'vocalizer' || SONG.song.toLowerCase() == 'bitcrush' || SONG.song.toLowerCase() == 'hassle')
+			healthBar.createFilledBar(0xFF4747CD, 0xFF31B0D1);
+		else if (SONG.song.toLowerCase() == 'dishonored')
+			healthBar.createFilledBar(0xFF993D3D, 0xFF31B0D1);
+		else
+			healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		// healthBar
 		add(healthBar);
 
@@ -599,9 +610,9 @@ class PlayState extends MusicBeatState
 					}); */
 				case 'vocalizer':
 					schoolIntro(doof);
-				case 'hassle':
-					schoolIntro(doof);
 				case 'bitcrush':
+					schoolIntro(doof);
+				case 'hassle':
 					schoolIntro(doof);
 				case 'dishonored':
 					schoolIntro(doof);

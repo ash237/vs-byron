@@ -64,7 +64,7 @@ class Character extends FlxSprite
 
 			case 'byron':
 				// byron ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('Byron');
+				tex = Paths.getSparrowAtlas('Byron_assets');
 				frames = tex;
 				animation.addByPrefix('idle', 'Byron_Idle', 24);
 				animation.addByPrefix('singUP', 'Byron_Up_Note', 24);
@@ -81,7 +81,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'byronMad':
 				// byronMad ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('ByronMad');
+				tex = Paths.getSparrowAtlas('Byron_mad_assets');
 				frames = tex;
 				animation.addByPrefix('idle', 'Angry_Byron_Idle', 24);
 				animation.addByPrefix('singUP', 'Angry_Byron_Up', 24);
