@@ -134,7 +134,7 @@ class DialogueBox extends FlxSpriteGroup
 		{
 		portraitLeft = new FlxSprite(-20, 40);
 		portraitLeft.frames = Paths.getSparrowAtlas('byron/byronMadPortrait');
-		portraitLeft.animation.addByPrefix('enter', 'Byron mad portrait enter', 24, false);
+		portraitLeft.animation.addByPrefix('enter', 'Byron Mad portrait enter', 24, false);
 		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 		portraitLeft.updateHitbox();
 		portraitLeft.scrollFactor.set();
@@ -157,6 +157,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		box.screenCenter(X);
 		portraitLeft.screenCenter(X);
+		portraitRight.screenCenter(X);
 		if (PlayState.SONG.song.toLowerCase() == 'tutorial')
 		{
 		handSelect = new FlxSprite(FlxG.width * 4, FlxG.height * 4).loadGraphic(Paths.image('tutorial/hand_textbox'));
