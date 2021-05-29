@@ -332,19 +332,19 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.9;
 					curStage = 'downfall';
-					var sky:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('ruined_sky'));
+					var sky:FlxSprite = new FlxSprite(-150, 0).loadGraphic(Paths.image('ruined_sky'));
 					sky.antialiasing = true;
-					sky.scrollFactor.set(0, 0);
+					sky.scrollFactor.set(0.6, 0.6);
 					sky.active = false;
 					add(sky);
 
-					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('ruined_wall'));
+					var bg:FlxSprite = new FlxSprite(-150, 0).loadGraphic(Paths.image('ruined_wall'));
 					bg.antialiasing = true;
 					bg.scrollFactor.set(0.9, 0.9);
 					bg.active = false;
 					add(bg);
 
-					var stageFloor:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('ruined_floor'));
+					var stageFloor:FlxSprite = new FlxSprite(-150, 0).loadGraphic(Paths.image('ruined_floor'));
 					stageFloor.setGraphicSize(Std.int(stageFloor.width * 1.1));
 					stageFloor.updateHitbox();
 					stageFloor.antialiasing = true;
@@ -352,7 +352,7 @@ class PlayState extends MusicBeatState
 					stageFloor.active = false;
 					add(stageFloor);
 
-					var stagePillars:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('ruined_pillars'));
+					var stagePillars:FlxSprite = new FlxSprite(-150, 0).loadGraphic(Paths.image('ruined_pillars'));
 					stagePillars.setGraphicSize(Std.int(stagePillars.width * 0.9));
 					stagePillars.updateHitbox();
 					stagePillars.antialiasing = true;
