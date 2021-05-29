@@ -344,7 +344,7 @@ class PlayState extends MusicBeatState
 					bg.active = false;
 					add(bg);
 
-					var stageFloor:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('ruined_floor'));
+					var stageFloor:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('ruined_floor'));
 					stageFloor.setGraphicSize(Std.int(stageFloor.width * 1.1));
 					stageFloor.updateHitbox();
 					stageFloor.antialiasing = true;
