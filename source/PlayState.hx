@@ -504,14 +504,17 @@ class PlayState extends MusicBeatState
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
-		if (SONG.song.toLowerCase() == 'tutorial')
-			healthBar.createFilledBar(0xFFA5004D, 0xFF31B0D1);
-		else if (SONG.song.toLowerCase() == 'vocalizer' || SONG.song.toLowerCase() == 'bitcrush' || SONG.song.toLowerCase() == 'hassle')
-			healthBar.createFilledBar(0xFF4747CD, 0xFF31B0D1);
-		else if (SONG.song.toLowerCase() == 'dishonored')
-			healthBar.createFilledBar(0xFF993D3D, 0xFF31B0D1);
-		else
-			healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+		switch (SONG.song.toLowerCase())
+		{
+			case 'tutorial':
+				healthBar.createFilledBar(0xFFA5004D, 0xFF31B0D1);
+			case 'vocalizer' | 'bitcrush' | 'hassle':
+				healthBar.createFilledBar(0xFF898989, 0xFF31B0D1);
+			case 'dishonored':
+				healthBar.createFilledBar(0xFF993D3D, 0xFF31B0D1);
+			default:
+				healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+		}
 		// healthBar
 		add(healthBar);
 
