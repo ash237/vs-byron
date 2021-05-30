@@ -618,7 +618,21 @@ class PlayState extends MusicBeatState
 				case 'hassle':
 					schoolIntro(doof);
 				case 'dishonored':
-					schoolIntro(doof);
+					var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+					add(blackScreen);
+					blackScreen.scrollFactor.set();
+					camHUD.visible = false;
+
+					new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+						remove(blackScreen);
+						new FlxTimer().start(0.8, function(tmr:FlxTimer)
+						{
+							camHUD.visible = true;
+							remove(blackScreen);
+							schoolIntro(doof);
+						});
+					});
 				default:
 					startCountdown();
 			}

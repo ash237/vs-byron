@@ -72,11 +72,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Byron_Down_Note', 24);
 				animation.addByPrefix('singLEFT', 'Byron_Left_Note', 24);
 
-				addOffset("idle", 140, 0);
-				addOffset("singUP",  140, 0);
-				addOffset("singRIGHT", 140, 0);
-				addOffset("singLEFT", 140, 0);
-				addOffset("singDOWN", 140, 0);
+				addOffset("idle", 150, 30);
+				addOffset("singUP",  180, 54);
+				addOffset("singRIGHT", 184, 26);
+				addOffset("singLEFT", 148, 36);
+				addOffset("singDOWN", 180, 54);
 
 				playAnim('idle');
 			case 'byronMad':
